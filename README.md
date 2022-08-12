@@ -1,2 +1,3 @@
-# vehicle_rec_sys
-Personal practice
+# vehicle recommendation system
+1.data collection and process
+
