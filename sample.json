@@ -1,0 +1,248 @@
+{"2019 Fiat 124 Spider": {
+        "year": "2019",
+        "make": "Fiat",
+        "model": "124 Spider",
+        "price": "26935",
+        "kbb_url": "https://www.kbb.com/fiat/124-spider/2019/consumer-reviews",
+        "rate": {
+            "overall": "4.9",
+            "count": "36",
+            "recby": "95%",
+            "star": {
+                "5": "92%",
+                "4": "6%",
+                "3": "3%",
+                "2": "0%",
+                "1": "0%"
+            },
+            "mark": {
+                "Value": "4.8",
+                "Performance": "4.8",
+                "Quality": "4.7",
+                "Comfort": "4.4",
+                "Reliability": "4.9",
+                "Styling": "4.8"
+            }
+        },
+        "cnd_url": "https://www.caranddriver.com/fiat/124-spider/specs/2019/fiat_124-spider_fiat-124-spider_2019",
+        "specs": {
+            "Vehicle": {
+                "EPA Classification": "Two Seaters",
+                "Drivetrain": "Rear Wheel Drive"
+            },
+            "Engine": {
+                "Engine Order Code": "EAM",
+                "Engine Type and Required Fuel": "Intercooled Turbo Premium Unleaded I-4",
+                "Displacement (liters/cubic inches)": "1.4 L/83",
+                "Fuel System": "Sequential MPI",
+                "Maximum Horsepower @ RPM": "160 @ 5500",
+                "Maximum Torque @ RPM": "184 @ 3200",
+                "Cooling System Capacity (quarts)": "NA"
+            },
+            "Transmission": {
+                "Transmission Order Code": "DAG",
+                "Transmission Description": "Manual w/OD",
+                "Number of Transmission Speeds": "6",
+                "First Gear Ratio (:1)": "4.36",
+                "Second Gear Ratio (:1)": "2.35",
+                "Third Gear Ratio (:1)": "1.65",
+                "Fourth Gear Ratio (:1)": "1.26",
+                "Fifth Gear Ratio (:1)": "1.00",
+                "Sixth Gear Ratio (:1)": "0.84",
+                "Reverse Ratio (:1)": "3.86",
+                "Final Drive Axle Ratio (:1)": "3.45",
+                "Clutch Size": "NA"
+            },
+            "Fuel Economy and Range": {
+                "EPA Greenhouse Gas Score": "NA",
+                "CO2 Emissions, 15K mi/year (tons)": "5.9",
+                "Range, city/highway (miles)": "309.40 / 416.50",
+                "EPA Fuel Economy, combined/city/highway (mpg)": "30 / 26 / 35",
+                "EPA Fuel Economy Equivalent (for hybrid and electric vehicles), combined/city/highway (MPGe)": "N/A / N/A / N/A"
+            },
+            "Fuel Tank": {
+                "Fuel Capacity / Gas Tank Size": "11.9",
+                "Aux Fuel Tank Capacity (gallons)": "NA"
+            },
+            "Exterior Dimensions": {
+                "Wheelbase (inches)": "90.9",
+                "Length (inches)": "159.6",
+                "Width, without mirrors (inches)": "68.5",
+                "Height (inches)": "48.5",
+                "Front Track Width (inches)": "58.9",
+                "Rear Track Width (inches)": "59.1",
+                "Minimum Ground Clearance (inches)": "NA",
+                "Liftover Height (inches)": "NA"
+            },
+            "Interior Dimensions": {
+                "Passenger / Seating Capacity": "2",
+                "Total Passenger Volume (cubic feet)": "NA",
+                "Front Head Room (inches)": "37.4",
+                "Front Leg Room (inches)": "43.1",
+                "Front Shoulder Room (inches)": "52.1",
+                "Front Hip Room (inches)": "52",
+                "Second Row Head Room (inches)": "NA",
+                "Second Row Leg Room (inches)": "NA",
+                "Second Row Shoulder Room (inches)": "NA",
+                "Second Row Hip Room (inches)": "NA"
+            },
+            "Cargo Area Dimensions": {
+                "Trunk Space (cubic feet)": "4.9"
+            },
+            "Steering": {
+                "Steering Type": "Rack-Pinion",
+                "Steering Ratio (:1)": "NA",
+                "Turns, lock to lock": "NA",
+                "Turning Diameter / Radius, curb to curb (feet)": "30.8",
+                "Turning Diameter / Radius, wall to wall (feet)": "NA"
+            },
+            "Suspension": {
+                "Front Suspension Type": "Double Wishbone",
+                "Rear Suspension Type": "Multi-Link",
+                "Front Shock Absorber Diameter (mm)": "NA",
+                "Rear Shock Absorber Diameter (mm)": "NA",
+                "Front Anti-Roll Bar Diameter (inches)": "NA",
+                "Rear Anti-Roll Bar Diameter (inches)": "NA"
+            },
+            "Brakes": {
+                "Brake Type": "4-Wheel Disc",
+                "Anti-Lock-Braking System": "4-Wheel",
+                "Front Brake Rotors, diameter x thickness (inches)": "11",
+                "Rear Brake Rotors, diameter x thickness (inches)": "11",
+                "Rear Drums, diameter x width (inches)": "NA"
+            },
+            "Wheels and Tires": {
+                "Front Wheel Size (inches)": "17 X 7",
+                "Front Wheel Material": "Aluminum",
+                "Front Tire Size": "P205/45WR17",
+                "Rear Wheel Size (inches)": "17 X 7",
+                "Rear Wheel Material": "Aluminum",
+                "Rear Tire Size": "P205/45WR17",
+                "Spare Wheel Size (inches)": "NA",
+                "Spare Wheel Material": "NA",
+                "Spare Tire Size": "NA"
+            },
+            "Towing": {
+                "Maximum Trailer Weight, dead weight hitch (pounds)": "NA",
+                "Maximum Tongue Weight, dead weight hitch (pounds)": "NA",
+                "Maximum Trailer Weight, weight distributing hitch (pounds)": "NA",
+                "Maximum Tongue Weight, weight distributing hitch (pounds)": "NA"
+            },
+            "Weight Information": {
+                "Base Curb Weight (pounds)": "2436"
+            },
+            "Electrical": {
+                "Cold Cranking Amps @ 0\u00b0 F": "450",
+                "Maximum Alternator Capacity (amps)": "150"
+            },
+            "Mechanical": [
+                "Engine: 1.4L I4 MultiAir Turbo",
+                "Transmission: 6-Speed Manual",
+                "50 State Emissions",
+                "Rear-Wheel Drive",
+                "3.45 Axle Ratio",
+                "Engine Oil Cooler",
+                "450CCA Maintenance-Free Battery",
+                "150 Amp Alternator",
+                "Gas-Pressurized Shock Absorbers",
+                "Front And Rear Anti-Roll Bars",
+                "Touring Suspension",
+                "Electric Power-Assist Speed-Sensing Steering",
+                "11.9 Gal. Fuel Tank",
+                "Quasi-Dual Stainless Steel Exhaust w/Chrome Tailpipe Finisher",
+                "Double Wishbone Front Suspension w/Coil Springs",
+                "Multi-Link Rear Suspension w/Coil Springs",
+                "4-Wheel Disc Brakes w/4-Wheel ABS, Front Vented Discs, Brake Assist and Hill Hold Control"
+            ],
+            "Exterior": [
+                "Wheels: 17\" x 7.0\" Premium Silver Aluminum",
+                "Tires: 205/45VR17 3 Season Performance",
+                "Tire Mobility Kit",
+                "Clearcoat Paint",
+                "Body-Colored Front Bumper",
+                "Body-Colored Rear Bumper",
+                "Black Side Windows Trim, Metal-Look Front Windshield Trim and Black Rear Window Trim",
+                "Body-Colored Door Handles",
+                "Body-Colored Power Side Mirrors w/Manual Folding",
+                "Fixed Rear Window w/Defroster",
+                "Light Tinted Glass",
+                "Rain Detecting Variable Intermittent Wipers",
+                "Galvanized Steel/Aluminum Panels",
+                "Manual Convertible Top w/Lining, Glass Rear Window and Fixed Wind Blocker",
+                "Black Grille",
+                "Trunk Rear Cargo Access",
+                "Auto On/Off Projector Beam Halogen Daytime Running Lights Preference Setting Headlamps w/Delay-Off",
+                "Front Fog Lamps",
+                "LED Brakelights"
+            ],
+            "Entertainment": [
+                "Radio: AM/FM Bluetooth w/7\" Display",
+                "Radio w/Seek-Scan, Clock, Speed Compensated Volume Control, Aux Audio Input Jack, Steering Wheel Controls, Voice Activation and External Memory Control",
+                "6 Speakers",
+                "Streaming Audio",
+                "Fixed Antenna",
+                "1 LCD Monitor In The Front"
+            ],
+            "Interior": [
+                "6-Way Driver Seat -inc: Manual Recline, Height Adjustment and Fore/Aft Movement",
+                "4-Way Passenger Seat -inc: Manual Recline and Fore/Aft Movement",
+                "Manual Tilt Steering Column",
+                "Gauges -inc: Speedometer, Odometer, Engine Coolant Temp, Tachometer, Trip Odometer and Trip Computer",
+                "Leather/Metal-Look Steering Wheel",
+                "Front Cupholder",
+                "Proximity Key For Doors And Push Button Start",
+                "Power Fuel Flap Locking Type",
+                "Remote Keyless Entry w/Integrated Key Transmitter, Illuminated Entry, Illuminated Ignition Switch and Panic Button",
+                "Remote Releases -Inc: Mechanical Cargo Access",
+                "Cruise Control w/Steering Wheel Controls",
+                "Automatic Air Conditioning",
+                "Driver Foot Rest",
+                "Leather Trimmed Seats",
+                "Interior Trim -inc: Piano Black Instrument Panel Insert, Piano Black Door Panel Insert, Metal-Look Interior Accents and Leatherette Upholstered Dashboard",
+                "Leather/Metal-Look Gear Shifter Material",
+                "Day-Night Rearview Mirror",
+                "Driver And Passenger Visor Vanity Mirrors",
+                "Full Floor Console w/Locking Storage and 1 12V DC Power Outlet",
+                "Front Map Lights",
+                "Fade-To-Off Interior Lighting",
+                "Full Carpet Floor Covering -inc: Carpet Front Floor Mats",
+                "Carpet Floor Trim",
+                "Cargo Features -inc: Tire Mobility Kit",
+                "Cargo Space Lights",
+                "FOB Controls -inc: Cargo Access and Windows",
+                "Instrument Panel Bin and Interior Concealed Storage",
+                "Power 1st Row Windows w/Driver And Passenger 1-Touch Down",
+                "Power Door Locks w/Autolock Feature",
+                "Trip Computer",
+                "Outside Temp Gauge",
+                "Digital/Analog Appearance",
+                "Seats w/Leatherette Back Material",
+                "Driver And Passenger Heated-Cushion, Driver And Passenger Heated-Seatback",
+                "Fixed Front Head Restraints",
+                "Front Center Armrest",
+                "1 Seatback Storage Pocket",
+                "Engine Immobilizer",
+                "1 12V DC Power Outlet",
+                "Air Filtration"
+            ],
+            "Safety": [
+                "Electronic Stability Control (ESC)",
+                "ABS And Driveline Traction Control",
+                "Side Impact Beams",
+                "Dual Stage Driver And Passenger Seat-Mounted Side Airbags",
+                "Low Tire Pressure Warning",
+                "Dual Stage Driver And Passenger Front Airbags",
+                "Airbag Occupancy Sensor",
+                "Driver And Passenger Side Airbag Head Extension",
+                "Outboard Front Lap And Shoulder Safety Belts -inc: Pretensioners",
+                "ParkView Back-Up Camera"
+            ],
+            "Warranty": [
+                "4 Basic Years / 50,000 Basic Miles",
+                "4 Drivetrain Years / 50,000 Drivetrain Miles",
+                "12 Corrosion Years / Unlimited Corrosion Miles",
+                "4 Roadside Assistance Years / Unlimited Roadside Assistance Miles"
+            ]
+        }
+    }
+}
