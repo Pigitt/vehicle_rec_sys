@@ -245,6 +245,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "2d258269-0ac7-4b49-8124-1338bea826b1",
         "year": "2017"
     },
     "2017 Fiat 500": {
@@ -519,6 +520,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "21f918a9-080f-4204-9cd0-56b86874ba0c",
         "year": "2017"
     },
     "2017 Fiat 500L": {
@@ -767,6 +769,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "203764ba-d0dd-4541-84a2-edeccd053471",
         "year": "2017"
     },
     "2017 Fiat 500X": {
@@ -1044,6 +1047,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "f5348a21-6012-4489-bce0-ff0d39274057",
         "year": "2017"
     },
     "2018 Fiat 124 Spider": {
@@ -1289,6 +1293,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "8c67b82b-9a12-4851-8556-b628c66748d8",
         "year": "2018"
     },
     "2018 Fiat 500": {
@@ -1556,6 +1561,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "d42f267e-6e36-4b04-9181-14d43d57bc0e",
         "year": "2018"
     },
     "2018 Fiat 500L": {
@@ -1805,6 +1811,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "b6cc1a7c-ffff-4919-aae1-2c299b7948fd",
         "year": "2018"
     },
     "2018 Fiat 500X": {
@@ -2081,6 +2088,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "07442306-eacb-426d-9bf2-f688c6efedb0",
         "year": "2018"
     },
     "2019 Fiat 124 Spider": {
@@ -2329,6 +2337,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "097ad82b-8308-41da-9c83-2fec66260139",
         "year": "2019"
     },
     "2019 Fiat 500": {
@@ -2359,6 +2368,7 @@
             }
         },
         "specs": {},
+        "vehicle_id": "b1197995-df27-4386-929a-a4993b2c50db",
         "year": "2019"
     },
     "2019 Fiat 500 Abarth": {
@@ -2370,6 +2380,7 @@
         "price": "21790",
         "rate": {},
         "specs": {},
+        "vehicle_id": "1dcbfafd-d431-4e94-b718-dbf1274cb847",
         "year": "2019"
     },
     "2019 Fiat 500L": {
@@ -2620,6 +2631,7 @@
                 "Spare Wheel Size (inches)": "NA"
             }
         },
+        "vehicle_id": "a318e363-1c2b-4ef1-97ce-f0d397f71322",
         "year": "2019"
     },
     "2019 Fiat 500X": {
@@ -2650,6 +2662,7 @@
             }
         },
         "specs": {},
+        "vehicle_id": "dcf1c878-14d4-4034-a28d-eeec7e61d189",
         "year": "2019"
     },
     "2019 Fiat 500e": {
@@ -2680,6 +2693,7 @@
             }
         },
         "specs": {},
+        "vehicle_id": "45726e31-ba3c-4926-8ac8-7c3ddd88c0e9",
         "year": "2018"
     },
     "2020 Fiat 124 Spider": {
@@ -2710,6 +2724,7 @@
             }
         },
         "specs": {},
+        "vehicle_id": "0b2d5eca-111a-4cef-8102-32b89199bbc2",
         "year": "2020"
     },
     "2020 Fiat 500L": {
@@ -2721,6 +2736,7 @@
         "price": "23995",
         "rate": {},
         "specs": {},
+        "vehicle_id": "afad9be5-c087-4e25-84f3-157ca38ff2c4",
         "year": "2020"
     },
     "2020 Fiat 500X": {
@@ -2751,6 +2767,7 @@
             }
         },
         "specs": {},
+        "vehicle_id": "ddb0cffb-82e4-4c3a-81a3-a14eb0f03ee0",
         "year": "2020"
     },
     "2021 Fiat 500X": {
@@ -2781,6 +2798,7 @@
             }
         },
         "specs": {},
+        "vehicle_id": "60c671c1-bbc0-48a1-b2e6-8407517ca9ea",
         "year": "2021"
     },
     "2022 Fiat 500X": {
@@ -2811,6 +2829,7 @@
             }
         },
         "specs": {},
+        "vehicle_id": "d46df03b-8310-419e-bfb1-3c9804e95fb1",
         "year": "2022"
     }
 }
