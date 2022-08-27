@@ -1,9 +1,11 @@
 import sys
-sys.path.append('..')
+import os
+sys.path.append('../vehicle_rec_sys/')
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from conf.dao_config import loginfo_db_name, user_info_db_name, contest_loginfo_db_name
 
+print(loginfo_db_name)
 # class PostgresqlServer(object):
 #     def __init__(self, username="root", passwd="123456", hostname="localhost", port="3306", \
 #             user_info_db_name=user_info_db_name, loginfo_db_name=loginfo_db_name, \
