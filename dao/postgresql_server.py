@@ -1,5 +1,4 @@
 import sys
-
 import os
 sys.path.append('../vehicle_rec_sys/')
 from sqlalchemy import create_engine
