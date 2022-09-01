@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../vehicle_rec_sys/')
+sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 import json, time
 from flask_cors import * 
 from flask import Flask, jsonify, request

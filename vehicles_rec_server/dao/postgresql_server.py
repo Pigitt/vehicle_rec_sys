@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append('../vehicle_rec_sys/')
+sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from conf.dao_config import loginfo_db_name, user_info_db_name, contest_loginfo_db_name

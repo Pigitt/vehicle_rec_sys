@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../vehicle_rec_sys/')
+sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 from dao.postgresql_server import PostgresqlServer
 from dao.entity.user_exposure import UserExposure
 from dao.entity.register_user import RegisterUser

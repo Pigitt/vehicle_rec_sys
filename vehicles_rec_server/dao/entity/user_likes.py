@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.sqltypes import BigInteger
 import sys
-sys.path.append('../vehicle_rec_sys/')
+sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 from conf.dao_config import user_likes_table_name
 from dao.postgresql_server import PostgresqlServer
 from sqlalchemy.sql import func

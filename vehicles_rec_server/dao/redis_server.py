@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../")
+sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 import redis 
 from conf.dao_config import redis_hostname, redis_port, static_news_info_db_num, dynamic_news_info_db_num, reclist_redis_db_num
 from conf.dao_config import user_exposure_db_num
