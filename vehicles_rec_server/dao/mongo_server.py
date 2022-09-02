@@ -24,14 +24,14 @@ class MongoServer(object):
         _contest_feature_protrail_collection_name=contest_feature_protrail_collection_name):
         self._hostname = _mongo_hostname
         self._port = _mongo_port
-        self._vehicle_db_name = vehicle_db_name
+        self._vehicle_db_name = _vehicle_db_name
         self._vehicle_collection_name_prefix = _vehicle_collection_name_prefix
         self._material_db_name = _material_db_name
         self._feature_protrail_collection_name = _feature_protrail_collection_name
         self._redis_mongo_collection_name = _redis_mongo_collection_name
-        self._user_protrail_collection_name = user_protrail_collection_name
-        self._contest_user_protrail_collection_name = contest_user_protrail_collection_name
-        self._contest_feature_protrail_collection_name = contest_feature_protrail_collection_name
+        self._user_protrail_collection_name = _user_protrail_collection_name
+        self._contest_user_protrail_collection_name = _contest_user_protrail_collection_name
+        self._contest_feature_protrail_collection_name = _contest_feature_protrail_collection_name
 
         self._mongo_client = self._mongodb()
 
@@ -47,7 +47,7 @@ class MongoServer(object):
         return self._mongo_client[self._material_db_name][self._feature_protrail_collection_name]
 
     def get_vehicles_collection(self):
-        """原始新闻画像集合, 新闻爬取数据collection会以当天的时间命名
+        """原始汽车数据集合, 爬取数据collection会以当天的时间命名
         """
         vehicle_collection_name = self._vehicle_collection_name_prefix + "_" + \
                             "".join(str(datetime.date.today()).split('-'))

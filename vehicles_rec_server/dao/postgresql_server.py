@@ -3,11 +3,11 @@ import os
 sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from conf.dao_config import loginfo_db_name, user_info_db_name, contest_loginfo_db_name
+from conf.dao_config import postgresql_username,postgresql_passwd,postgresql_hostname,postgresql_port,loginfo_db_name, user_info_db_name, contest_loginfo_db_name
 
 # print(loginfo_db_name)
 class PostgresqlServer(object):
-    def __init__(self, username="postgres", passwd="123456", host="localhost", port="5432", \
+    def __init__(self, username=postgresql_username, passwd=postgresql_passwd, host=postgresql_hostname, port=postgresql_port, \
             user_info_db_name=user_info_db_name, loginfo_db_name=loginfo_db_name, \
             contest_loginfo_db_name=contest_loginfo_db_name):
 

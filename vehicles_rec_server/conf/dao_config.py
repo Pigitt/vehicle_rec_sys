@@ -14,10 +14,10 @@ contest_loginfo_db_name = "contest_loginfo"
 contest_loginfo_table_name_prefix = "contest_log"
 
 # 默认配置
-mysql_username = "root"
-mysql_passwd = "123456"
-mysql_hostname = "localhost"
-mysql_port = "3306"
+postgresql_username = "postgres"
+postgresql_passwd = "123456"
+postgresql_hostname = "localhost"
+postgresql_port = "5432"
 
 # MongoDB
 mongo_hostname = "127.0.0.1"
@@ -40,6 +40,6 @@ redis_hostname = "127.0.0.1"
 redis_port = 6379
 
 reclist_redis_db_num = 0
-static_news_info_db_num = 1
-dynamic_news_info_db_num = 2
+static_vehicles_info_db_num = 1
+dynamic_vehicles_info_db_num = 2
 user_exposure_db_num = 3
