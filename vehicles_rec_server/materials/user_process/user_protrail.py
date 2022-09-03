@@ -3,7 +3,7 @@ import datetime
 from collections import Counter, defaultdict
 
 from sqlalchemy.sql.expression import table
-sys.path.append("../../")
+sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 from dao.mongo_server import MongoServer
 from dao.postgresql_server import PostgresqlServer
 from dao.entity.register_user import RegisterUser
