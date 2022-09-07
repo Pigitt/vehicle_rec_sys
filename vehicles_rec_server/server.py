@@ -110,12 +110,12 @@ def rec_list():
         return jsonify({"code": 2000, "msg": "user_id is none!"}) 
 
     try:
-        rec_news_list = recsys_server.get_cold_start_rec_list_v2(user_id, age, gender)
+        rec_vehicles_list = recsys_server.get_cold_start_rec_list_v2(user_id, age, gender)
         # 冷启动策略
-        # rec_news_list = recsys_server.get_cold_start_rec_list(user_id)
-        if len(rec_news_list) == 0:
-            jsonify({"code": 500, "msg": "rec_news_list is empty."}) 
-        return jsonify({"code": 200, "msg": "request rec_list success.", "data": rec_news_list, "user_id": user_id})
+        # rec_vehicles_list = recsys_server.get_cold_start_rec_list(user_id)
+        if len(rec_vehicles_list) == 0:
+            jsonify({"code": 500, "msg": "rec_vehicles_list is empty."}) 
+        return jsonify({"code": 200, "msg": "request rec_list success.", "data": rec_vehicles_list, "user_id": user_id})
     except Exception as e:
         print(str(e))
         return jsonify({"code": 500, "msg": "redis fail."}) 
@@ -137,44 +137,44 @@ def hot_list():
 
     try:
         # 这里需要改成get_hot_list, 当前get_hot_list方法还没有实现
-        # rec_news_list = recsys_server.get_hot_list(user_id)
-        rec_news_list = recsys_server.get_hot_list_v2(user_id)
-        if len(rec_news_list) == 0:
+        # rec_vehicles_list = recsys_server.get_hot_list(user_id)
+        rec_vehicles_list = recsys_server.get_hot_list_v2(user_id)
+        if len(rec_vehicles_list) == 0:
             return jsonify({"code": 500, "msg": "request redis data fail."})
-        return jsonify({"code": 200, "msg": "request hot_list success.", "data": rec_news_list, "user_id": user_id})
+        return jsonify({"code": 200, "msg": "request hot_list success.", "data": rec_vehicles_list, "user_id": user_id})
     except Exception as e:
         print(str(e))
         return jsonify({"code": 2000, "msg": "request hot_list fail."}) 
 
 
-@app.route('/recsys/news_detail', methods=["GET"])
-def news_detail():
+@app.route('/recsys/vehicle_detail', methods=["GET"])
+def vehicle_detail():
     """一篇文章的详细信息
     """
     user_name = request.args.get('user_name')
-    news_id = request.args.get('news_id')
+    vehicle_id = request.args.get('vehicle_id')
     
     user_id = UserAction().get_user_id_by_name(user_name)  
 
     # if news_id is None or user_id is None:
-    if news_id is None or user_name is None:
-        return jsonify({"code": 2000, "msg": "news_id is none or user_name is none!"}) 
+    if vehicle_id is None or user_name is None:
+        return jsonify({"code": 2000, "msg": "vehicle_id is none or user_name is none!"}) 
     try:
-        news_detail = recsys_server.get_news_detail(news_id)
+        vehicle_detail = recsys_server.get_vehicle_detail(vehicle_id)
 
-        # recsys_server.save_user_consume(user_id,news_id)  # 记录用户消费的
+        # recsys_server.save_user_consume(user_id,vehicle_id)  # 记录用户消费的
   
-        if UserAction().get_likes_counts_by_user(user_id,news_id) > 0:
-            news_detail["likes"] = True
+        if UserAction().get_likes_counts_by_user(user_id,vehicle_id) > 0:
+            vehicle_detail["likes"] = True
         else:
-            news_detail["likes"] = False
+            vehicle_detail["likes"] = False
 
-        if UserAction().get_coll_counts_by_user(user_id,news_id) > 0:
-            news_detail["collections"] = True
+        if UserAction().get_coll_counts_by_user(user_id,vehicle_id) > 0:
+            vehicle_detail["collections"] = True
         else:
-            news_detail["collections"] = False
+            vehicle_detail["collections"] = False
 
-        return jsonify({"code": 0, "msg": "request news_detail success.", "data": news_detail})
+        return jsonify({"code": 0, "msg": "request news_detail success.", "data": vehicle_detail})
     except Exception as e:
         print(str(e))
         return jsonify({"code": 2000, "msg": "error"}) 
@@ -188,7 +188,7 @@ def actions():
     request_dict = json.loads(request_str)
     
     username = request_dict.get('user_name')
-    newsid = request_dict.get('news_id')
+    vehicle_id = request_dict.get('vehicle_id')
     actiontype = request_dict.get("action_type")
     actiontime = request_dict.get("action_time")
 
@@ -204,28 +204,28 @@ def actions():
         if action_type_list[1] == "false": # 如果数据库中这个参数为false的话
             # 删除数据 
             if _action_type=="likes": 
-                UserAction().del_likes_by_user(userid,newsid)    # 删除用户喜欢记录
+                UserAction().del_likes_by_user(userid,vehicle_id)    # 删除用户喜欢记录
             elif _action_type=="collections":
-                UserAction().del_coll_by_user(userid,newsid)     # 删除用户收藏记录 
+                UserAction().del_coll_by_user(userid,vehicle_id)     # 删除用户收藏记录 
         else: 
             if _action_type=="likes":
                 userlikes = UserLikes()
-                userlikes.new(userid,username,newsid)
+                userlikes.new(userid,username,vehicle_id)
                 UserAction().save_one_action(userlikes)       # 记录用户喜欢记录
             elif _action_type=="collections":
                 usercollections = UserCollections()
-                usercollections.new(userid,username,newsid)
+                usercollections.new(userid,username,vehicle_id)
                 UserAction().save_one_action(usercollections)   # 记录用户收藏记录 
 
     try:
         # 落日志
         logitem = LogItem()
-        logitem.new(userid,newsid,action_type_list[0])
+        logitem.new(userid,vehicle_id,action_type_list[0])
         LogController().save_one_log(logitem)
 
         # 更新redis中的展示数据   新闻侧
         # if action_type_list[0] in ["read","likes","collections"]:
-        recsys_server.update_news_dynamic_info(news_id=newsid,action_type=action_type_list)
+        recsys_server.update_vehicle_dynamic_info(vehicle_id=vehicle_id,action_type=action_type_list)
         return jsonify({"code": 200, "msg": "action success"})
 
     except Exception as e:

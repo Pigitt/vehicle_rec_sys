@@ -4,8 +4,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 import json
 import time
 import threading
-from conf.dao_config import cate_dict
-from conf.proj_path import bad_case_news_log_path
+from conf.dao_config import make_id
+from conf.proj_path import bad_case_vehicle_log_path
 from dao.redis_server import RedisServer
 from dao.postgresql_server import PostgresqlServer
 from dao.entity.register_user import RegisterUser
@@ -21,14 +21,14 @@ class OnlineServer(object):
  
     def __init__(self,):
         self.reclist_redis_db = redis_server.get_reclist_redis()
-        self.static_news_info_redis_db = redis_server.get_static_news_info_redis()
-        self.dynamic_news_info_redis_db = redis_server.get_dynamic_news_info_redis()
+        self.static_vehicles_info_redis_db = redis_server.get_static_vehicles_info_redis()
+        self.dynamic_vehicles_info_redis_db = redis_server.get_dynamic_vehicles_info_redis()
         self.exposure_redis_db = redis_server.get_exposure_redis()
         self.register_sql_sess = PostgresqlServer().get_register_user_session()
-        self.cate_dict = cate_dict
-        self.cate_id_list = list(self.cate_dict.keys())
-        self.bad_case_news_log_path = bad_case_news_log_path
-        self.name2id_cate_dict = {v: k for k, v in self.cate_dict.items()}
+        self.make_dict = make_id
+        self.make_id_list = list(self.make_dict.keys())
+        self.bad_case_vehicle_log_path = bad_case_vehicle_log_path
+        self.name2id_make_dict = {v: k for k, v in self.make_dict.items()}
         self._set_user_group() 
 
     def __new__(cls, *args, **kwargs):
@@ -68,10 +68,10 @@ class OnlineServer(object):
             "3": ["国内","股市","体育","科技"],
             "4": ["国际", "国内","军事","社会","美股","财经","股市"]
         }
-        self.group_to_cate_id_dict = defaultdict(list)
-        for k, cate_list in self.user_group.items():
-            for cate in cate_list:
-                self.group_to_cate_id_dict[k].append(self.name2id_cate_dict[cate])
+        self.group_to_make_id_dict = defaultdict(list)
+        for k, make_list in self.user_group.items():
+            for make in make_list:
+                self.group_to_make_id_dict[k].append(self.name2id_make_dict[make])
 
     def _get_register_user_group_id(self, age, gender):
         """获取注册用户的分组,
@@ -92,32 +92,32 @@ class OnlineServer(object):
         """将确定分组后的用户的物料添加到redis中，并记录当前用户的所有新闻类别id
         """
         # 遍历当前分组的新闻类别
-        for cate_id in self.group_to_cate_id_dict[group_id]:
-            group_redis_key = "cold_start_group:{}:{}".format(group_id, cate_id)
-            user_redis_key = "cold_start_user:{}:{}".format(user_id, cate_id)
+        for make_id in self.group_to_make_id_dict[group_id]:
+            group_redis_key = "cold_start_group:{}:{}".format(group_id, make_id)
+            user_redis_key = "cold_start_user:{}:{}".format(user_id, make_id)
             self.reclist_redis_db.zunionstore(user_redis_key, [group_redis_key])
         # 将用户的类别集合添加到redis中
-        cate_id_set_redis_key = "cold_start_user_cate_set:{}".format(user_id)
-        self.reclist_redis_db.sadd(cate_id_set_redis_key, *self.group_to_cate_id_dict[group_id])
+        make_id_set_redis_key = "cold_start_user_make_set:{}".format(user_id)
+        self.reclist_redis_db.sadd(make_id_set_redis_key, *self.group_to_make_id_dict[group_id])
 
     def _judge_and_get_user_reverse_index(self, user_id, rec_type, age=None, gender=None):
         """判断当前用户是否存在倒排索引, 如果没有的话拷贝一份
         """
         if rec_type == 'hot_list':
             # 判断用户是否存在热门列表
-            cate_id = self.cate_id_list[0] # 随机选择一个就行
-            hot_list_user_key = "user_id_hot_list:{}:{}".format(str(user_id), cate_id)
+            make_id = self.make_id_list[0] # 随机选择一个就行
+            hot_list_user_key = "user_id_hot_list:{}:{}".format(str(user_id), make_id)
             if self.reclist_redis_db.exists(hot_list_user_key) == 0:
                 # 给用户拷贝一份每个类别的倒排索引
-                for cate_id in self.cate_id_list:
-                    cate_id_news_templete_key = "hot_list_news_cate:{}".format(cate_id)
-                    hot_list_user_key = "user_id_hot_list:{}:{}".format(str(user_id), cate_id)
-                    self.reclist_redis_db.zunionstore(hot_list_user_key, [cate_id_news_templete_key])
+                for make_id in self.make_id_list:
+                    make_id_vehicle_templete_key = "hot_list_vehicle_make:{}".format(make_id)
+                    hot_list_user_key = "user_id_hot_list:{}:{}".format(str(user_id), make_id)
+                    self.reclist_redis_db.zunionstore(hot_list_user_key, [make_id_vehicle_templete_key])
         elif rec_type == "cold_start":
              # 判断用户是否在冷启动列表中
-             cate_id_set_redis_key = "cold_start_user_cate_set:{}".format(user_id)
-             print("判断用户是否在冷启动列表中 {}".format(self.reclist_redis_db.exists(cate_id_set_redis_key)))
-             if self.reclist_redis_db.exists(cate_id_set_redis_key) == 0:
+             make_id_set_redis_key = "cold_start_user_make_set:{}".format(user_id)
+             print("判断用户是否在冷启动列表中 {}".format(self.reclist_redis_db.exists(make_id_set_redis_key)))
+             if self.reclist_redis_db.exists(make_id_set_redis_key) == 0:
                 # 如果系统中没有当前用户的冷启动倒排索引, 那么就需要从冷启动模板中复制一份
                 # 确定用户分组
                 try:
@@ -138,98 +138,98 @@ class OnlineServer(object):
         # 获取用户当前曝光列表
         if self.exposure_redis_db.exists(user_exposure_key) > 0:
             exposure_list = self.exposure_redis_db.smembers(user_exposure_key)
-            news_expose_set = set(map(lambda x: x.split(':')[0], exposure_list))
+            vehicles_expose_set = set(map(lambda x: x.split(':')[0], exposure_list))
         else:
-            news_expose_set = set()
-        return news_expose_set
+            vehicles_expose_set = set()
+        return vehicles_expose_set
 
-    def _save_user_exposure(self, user_id, newslist):
+    def _save_user_exposure(self, user_id, vehiclelist):
         """记录用户曝光到redis"""
-        if len(newslist) == 0: return False   # 无曝光数目
+        if len(vehiclelist) == 0: return False   # 无曝光数目
 
         ctime = str(round(time.time()*1000))  # 曝光时间戳
         key = "user_exposure:" + str(user_id)    # 为key拼接
         # 将历史曝光记录与newlist(最新曝光)的交集新闻提出来  并将该部分删除，防止重复存储曝光新闻
-        exposure_news_set = self.exposure_redis_db.smembers(key)  # 历史曝光记录
+        exposure_vehicles_set = self.exposure_redis_db.smembers(key)  # 历史曝光记录
 
-        del_exposure_news = []   # 历史曝光记录与newlist(最新曝光)的交集新闻,需要删除
-        if exposure_news_set.__len__() != 0:
-            del_exposure_news = [item for item in exposure_news_set if item.split(":")[0] in newslist]  
+        del_exposure_vehicles = []   # 历史曝光记录与newlist(最新曝光)的交集新闻,需要删除
+        if exposure_vehicles_set.__len__() != 0:
+            del_exposure_vehicles = [item for item in exposure_vehicles_set if item.split(":")[0] in vehiclelist]  
 
         # 为曝光过的新闻拼接时间
-        news_save = []
-        for news_id in newslist:
-            val = news_id+":"+ctime
+        vehicles_save = []
+        for vehicle_id in vehiclelist:
+            val = vehicle_id+":"+ctime
             val = val.replace('"', "'" )  # 将双引号都替换成单引号
-            news_save.append(val)
+            vehicles_save.append(val)
         
         # 存储redis
         try:
-            if del_exposure_news.__len__() != 0:
-                self.exposure_redis_db.srem(key,*del_exposure_news)
-            self.exposure_redis_db.sadd(key,*news_save)
+            if del_exposure_vehicles.__len__() != 0:
+                self.exposure_redis_db.srem(key,*del_exposure_vehicles)
+            self.exposure_redis_db.sadd(key,*vehicles_save)
         except Exception as e:
             print(str(e))
             return False
         return True
 
-    def _get_polling_rec_list(self, user_id, news_expose_set, cate_id_list, rec_type, one_page_news_cnt=10):
+    def _get_polling_rec_list(self, user_id, vehicle_expose_set, make_id_list, rec_type, one_page_vehicles_cnt=3):
         """获取轮询的打散新闻列表
         """
         # 候选曝光列表
-        exposure_news_list = []
+        exposure_vehicles_list = []
         # 用户展示新闻列表
-        user_news_list = []
+        user_vehicles_list = []
         iter_cnt = 0
         # 给每个用户轮询每个类别的新闻，获取打散之后的新闻列表
-        while len(user_news_list) != one_page_news_cnt:
-            cate_id_index = iter_cnt % len(cate_id_list)
-            cate_id = cate_id_list[cate_id_index]
+        while len(user_vehicles_list) != one_page_vehicles_cnt:
+            make_id_index = iter_cnt % len(make_id_list)
+            make_id = make_id_list[make_id_index]
             if rec_type == "hot_list":
-                user_redis_key = "user_id_hot_list:{}:{}".format(str(user_id), cate_id) 
+                user_redis_key = "user_id_hot_list:{}:{}".format(str(user_id), make_id) 
             elif rec_type == "cold_start":
-                user_redis_key = "cold_start_user:{}:{}".format(str(user_id), cate_id)
+                user_redis_key = "cold_start_user:{}:{}".format(str(user_id), make_id)
             else:
                 pass 
-            cur_cate_cnt = 0
+            cur_make_cnt = 0
             while self.reclist_redis_db.zcard(user_redis_key) > 0:
                 # 摘取排名第一的新闻
-                news_id_and_cate = self.reclist_redis_db.zrevrange(user_redis_key, 0, 0)[0]
-                news_id = news_id_and_cate.split('_')[1] # 将新闻id切分出来
-                if news_id in news_expose_set:
+                vehicle_id_and_make = self.reclist_redis_db.zrevrange(user_redis_key, 0, 0)[0]
+                vehicle_id = vehicle_id_and_make.split('_')[1] # 将新闻id切分出来
+                if vehicle_id in vehicle_expose_set:
                     # 将当前新闻id添加到待删除的新闻列表中
-                    self.reclist_redis_db.zrem(user_redis_key, news_id_and_cate) 
+                    self.reclist_redis_db.zrem(user_redis_key, vehicle_id_and_make) 
                     continue
                 # TODO 在数据入库的时候离线处理无法成功加载json的问题
                 # 获取新闻详细信息, 由于爬取的新闻没有做清理，导致有些新闻无法转化成json的形式
                 # 所以这里如果转化失败的内容也直接删除掉
                 try:
-                    news_info_dict = self.get_news_detail(news_id)
-                    cur_cate_cnt += 1
+                    vehicle_info_dict = self.get_vehicle_detail(vehicle_id)
+                    cur_make_cnt += 1
                 except Exception as e:  
                     # 删除无效的新闻
-                    self.reclist_redis_db.zrem(user_redis_key, news_id_and_cate)                   
+                    self.reclist_redis_db.zrem(user_redis_key, vehicle_id_and_make)                   
                     # 记录无效的新闻的id
-                    with open(self.bad_case_news_log_path, "a+") as f:
-                        f.write(news_id + "\n")
-                        print("there are not news detail info for {}".format(news_id))
+                    with open(self.bad_case_vehicle_log_path, "a+") as f:
+                        f.write(vehicle_id + "\n")
+                        print("there are not vehicle detail info for {}".format(vehicle_id))
                     continue
                 # 删除当前key
-                self.reclist_redis_db.zrem(user_redis_key, news_id_and_cate) 
+                self.reclist_redis_db.zrem(user_redis_key, vehicle_id_and_make) 
                 # 判断当前类别的新闻是否摘取成功, 摘取成功的话就推出当前循环
-                if cur_cate_cnt == 1:
+                if cur_make_cnt == 1:
                     # 将摘取成功的新闻信息添加到用户新闻列表中
-                    user_news_list.append(news_info_dict)
-                    exposure_news_list.append(news_id)
+                    user_vehicles_list.append(vehicle_info_dict)
+                    exposure_vehicles_list.append(vehicle_id_and_make)
                     break
             iter_cnt += 1
-        return user_news_list, exposure_news_list
+        return user_vehicles_list, exposure_vehicles_list
 
     def get_cold_start_rec_list_v2(self, user_id, age=None, gender=None):
         """推荐页展示列表，使用轮询的方式进行打散
         """
         # 获取用户曝光列表
-        news_expose_set = self._get_user_expose_set(user_id)
+        vehicles_expose_set = self._get_user_expose_set(user_id)
         
         # 判断用户是否存在冷启动列表中
         flag = self._judge_and_get_user_reverse_index(user_id, "cold_start", age, gender)
@@ -238,62 +238,62 @@ class OnlineServer(object):
             print("_judge_and_get_user_reverse_index fail")
             return []
 
-        # 获取用户的cate id列表
-        cate_id_set_redis_key = "cold_start_user_cate_set:{}".format(user_id)
-        cate_id_list = list(self.reclist_redis_db.smembers(cate_id_set_redis_key))
+        # 获取用户的make id列表
+        make_id_set_redis_key = "cold_start_user_make_set:{}".format(user_id)
+        make_id_list = list(self.reclist_redis_db.smembers(make_id_set_redis_key))
 
         # 通过轮询的方式
-        user_news_list, exposure_news_list = self._get_polling_rec_list(user_id, news_expose_set, cate_id_list, rec_type="cold_start")
+        user_vehicles_list, exposure_vehicles_list = self._get_polling_rec_list(user_id, vehicles_expose_set, make_id_list, rec_type="cold_start")
         
         # 添加曝光内容
-        self._save_user_exposure(user_id, exposure_news_list)
-        return user_news_list
+        self._save_user_exposure(user_id, exposure_vehicles_list)
+        return user_vehicles_list
 
     def get_hot_list_v2(self, user_id):
         """热门页展示列表，使用轮询的方式进行打散
         """
         # 获取用户曝光列表
-        news_expose_set = self._get_user_expose_set(user_id)
+        vehicles_expose_set = self._get_user_expose_set(user_id)
 
         # 判断用户是否存在热门列表
         self._judge_and_get_user_reverse_index(user_id, "hot_list")
 
         # 通过轮询的方式获取用户的展示列表
-        user_news_list, exposure_news_list = self._get_polling_rec_list(user_id, news_expose_set, self.cate_id_list, rec_type="hot_list")
+        user_vehicles_list, exposure_vehicles_list = self._get_polling_rec_list(user_id, vehicles_expose_set, self.make_id_list, rec_type="hot_list")
 
         # 添加曝光内容
-        self._save_user_exposure(user_id, exposure_news_list)
-        return user_news_list
+        self._save_user_exposure(user_id, exposure_vehicles_list)
+        return user_vehicles_list
 
-    def get_news_detail(self, news_id):
+    def get_vehicle_detail(self, vehicle_id):
         """获取新闻展示的详细信息
         """
-        news_info_str = self.static_news_info_redis_db.get("static_news_detail:" + news_id)
-        news_info_str = news_info_str.replace('\'', '\"' ) # 将单引号都替换成双引号
-        news_info_dit = json.loads(news_info_str)
-        news_dynamic_info_str = self.dynamic_news_info_redis_db.get("dynamic_news_detail:" + news_id)
-        news_dynamic_info_str = news_dynamic_info_str.replace("'", '"' ) # 将单引号都替换成双引号
-        news_dynamic_info_dit = json.loads(news_dynamic_info_str)
-        for k in news_dynamic_info_dit.keys():
-            news_info_dit[k] = news_dynamic_info_dit[k]
-        return news_info_dit
+        vehicles_info_str = self.static_vehicles_info_redis_db.get("static_vehicles_detail:" + vehicle_id)
+        vehicles_info_str = vehicles_info_str.replace('\'', '\"' ) # 将单引号都替换成双引号
+        vehicles_info_dit = json.loads(vehicles_info_str)
+        vehicles_dynamic_info_str = self.dynamic_vehicles_info_redis_db.get("dynamic_vehicles_detail:" + vehicle_id)
+        vehicles_dynamic_info_str = vehicles_dynamic_info_str.replace("'", '"' ) # 将单引号都替换成双引号
+        vehicles_dynamic_info_dit = json.loads(vehicles_dynamic_info_str)
+        for k in vehicles_dynamic_info_dit.keys():
+            vehicles_info_dit[k] = vehicles_dynamic_info_dit[k]
+        return vehicles_info_dit
 
-    def update_news_dynamic_info(self, news_id,action_type):
+    def update_vehicle_dynamic_info(self, vehicle_id,action_type):
         """更新新闻展示的详细信息
         """
-        news_dynamic_info_str = self.dynamic_news_info_redis_db.get("dynamic_news_detail:" + news_id)
-        news_dynamic_info_str = news_dynamic_info_str.replace("'", '"' ) # 将单引号都替换成双引号
-        news_dynamic_info_dict = json.loads(news_dynamic_info_str)
+        vehicles_dynamic_info_str = self.dynamic_vehicles_info_redis_db.get("dynamic_vehicles_detail:" + vehicle_id)
+        vehicles_dynamic_info_str = vehicles_dynamic_info_str.replace("'", '"' ) # 将单引号都替换成双引号
+        vehicles_dynamic_info_dict = json.loads(vehicles_dynamic_info_str)
         if len(action_type) == 2:
             if action_type[1] == "true":
-                news_dynamic_info_dict[action_type[0]] +=1
+                vehicles_dynamic_info_dict[action_type[0]] +=1
             elif action_type[1] == "false":
-                news_dynamic_info_dict[action_type[0]] -=1
+                vehicles_dynamic_info_dict[action_type[0]] -=1
         else:
-            news_dynamic_info_dict["read_num"] +=1
-        news_dynamic_info_str = json.dumps(news_dynamic_info_dict)
-        news_dynamic_info_str = news_dynamic_info_str.replace('"', "'" )
-        res = self.dynamic_news_info_redis_db.set("dynamic_news_detail:" + news_id, news_dynamic_info_str)
+            vehicles_dynamic_info_dict["read_num"] +=1
+        vehicles_dynamic_info_str = json.dumps(vehicles_dynamic_info_dict)
+        vehicles_dynamic_info_str = vehicles_dynamic_info_str.replace('"', "'" )
+        res = self.dynamic_vehicles_info_redis_db.set("dynamic_vehicles_detail:" + vehicle_id, vehicles_dynamic_info_str)
         return res
 
     def test(self):
