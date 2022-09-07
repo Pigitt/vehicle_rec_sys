@@ -101,38 +101,37 @@ class UserProtrail(object):
         """"""
         # 为history 获取特征
         if not len(history): return None
-        history_new_id = []
+        history_vehicle_id = []
         history_hot_value = []
-        history_new_cate = []
-        history_key_word = []
+        history_make = []
+        # history_key_word = []
         for h in history:
-            news_id = h.newid 
-            newsquery = {"news_id":news_id}
-            result = self.material_collection.find_one(newsquery)
-            history_new_id.append(result["news_id"])
+            vehicle_id = h.vehicle_id 
+            vehiclequery = {"vehicle_id":vehicle_id}
+            result = self.material_collection.find_one(vehiclequery)
+            history_vehicle_id.append(result["vehicle_id"])
             history_hot_value.append(result["hot_value"])
-            history_new_cate.append(result["cate"])
-            history_key_word += result["manual_key_words"].split(",")
-        
+            history_make.append(result["make"])
+            # history_key_word += result["manual_key_words"].split(",")
         feature_dict = dict()
         # 计算平均热度
         feature_dict["avg_hot_value"] = 0 if sum(history_hot_value) < 0.001 else sum(history_hot_value) / len(history_hot_value)
 
-        # 计算Top3的类别
-        cate_dict = Counter(history_new_cate)
-        cate_list= sorted(cate_dict.items(),key = lambda d: d[1], reverse=True)
-        cate_str = ",".join([item[0] for item in cate_list[:3]] if len(cate_list)>=3 else [item[0] for item in cate_list] )
-        feature_dict["intr_cate"] = cate_str
+        # 计算Top3的make
+        make_dict = Counter(history_make)
+        make_list= sorted(make_dict.items(),key = lambda d: d[1], reverse=True)
+        make_str = ",".join([item[0] for item in make_list[:3]] if len(make_list)>=3 else [item[0] for item in make_list] )
+        feature_dict["intr_make"] = make_str
 
-        # 计算Top3的关键词
-        word_dict = Counter(history_key_word)
-        word_list= sorted(word_dict.items(),key = lambda d: d[1], reverse=True)
-        # TODO 关键字属于长尾 如果关键字的次数都是一次 该怎么去前3
-        word_str = ",".join([item[0] for item in word_list[:3]] if len(cate_list)>=3 else [item[0] for item in word_list] )
-        feature_dict["intr_key_words"] = word_str
+        # # 计算Top3的关键词
+        # word_dict = Counter(history_key_word)
+        # word_list= sorted(word_dict.items(),key = lambda d: d[1], reverse=True)
+        # # TODO 关键字属于长尾 如果关键字的次数都是一次 该怎么去前3
+        # word_str = ",".join([item[0] for item in word_list[:3]] if len(make_list)>=3 else [item[0] for item in word_list] )
+        # feature_dict["intr_key_words"] = word_str
 
         # 新闻数目
-        feature_dict["news_num"] = len(history_new_id)
+        feature_dict["vehicle_num"] = len(history_vehicle_id)
 
         return feature_dict
 
