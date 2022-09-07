@@ -15,7 +15,7 @@ class UserRead(Base):
     __tablename__ = user_read_table_name
     index = Column(Integer(), primary_key=True, autoincrement=True)
     userid = Column(BigInteger())
-    newid = Column(String(100))
+    vehicle_id = Column(String(100))
     curtime = Column(DateTime(timezone=True), server_default=func.now())
 
     def __init__(self):
@@ -23,7 +23,7 @@ class UserRead(Base):
         engine = PostgresqlServer().get_user_read_engine()
         Base.metadata.create_all(engine)
     
-    def new(self, userid, newid, actiontime):
+    def new(self, userid, vehicle_id, actiontime):
         self.userid = userid
-        self.newid = newid
+        self.vehicle_id = vehicle_id
         self.curtime = str(actiontime)

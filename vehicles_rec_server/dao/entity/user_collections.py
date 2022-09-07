@@ -16,7 +16,7 @@ class UserCollections(Base):
     index = Column(Integer(), primary_key=True,autoincrement=True)
     userid = Column(BigInteger())
     username = Column(String(30))
-    newid = Column(String(100))
+    vehicle_id = Column(String(100))
     curtime =  Column(DateTime(timezone=True), server_default=func.now())
 
     def __init__(self):
@@ -24,8 +24,8 @@ class UserCollections(Base):
         engine = PostgresqlServer().get_user_collection_engine()
         Base.metadata.create_all(engine)
 
-    def new(self,userid,username,newid):
+    def new(self,userid,username,vehicle_id):
         self.userid = userid  
         self.username = username  
-        self.newid =  newid  
+        self.vehicle_id =  vehicle_id  
         # self.curtime = curtime

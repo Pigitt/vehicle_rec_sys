@@ -1,4 +1,6 @@
 import sys
+
+from vehicles_rec_server.materials.vehicle_crawler.vehicle import Vehicle
 sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 import time
 from sqlalchemy import Column, String, Integer,DateTime
@@ -21,7 +23,7 @@ class LogItem(Base):
     __tablename__ = '{}_{}'.format(loginfo_table_name_prefix, postfix) 
     index = Column(Integer(), primary_key=True)
     userid = Column(String(30))
-    newsid = Column(String(100))
+    vehicle_id = Column(String(100))
     
     # 阅读、点赞、收藏
     actiontype = Column(String(20)) 
@@ -32,7 +34,7 @@ class LogItem(Base):
         engine = PostgresqlServer().get_loginfo_engine()
         Base.metadata.create_all(engine)
     
-    def new(self,userid,newsid,actiontype):
+    def new(self,userid,vehicle_id,actiontype):
         self.userid = userid  
-        self.newsid = newsid  
+        self.vehicle_id = vehicle_id  
         self.actiontype =  actiontype  

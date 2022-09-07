@@ -21,7 +21,7 @@ class UserExposure(Base):
 
     index = Column(Integer(), primary_key=True,autoincrement=True)
     userid = Column(BigInteger())
-    newid = Column(String(600))
+    vehicle_id = Column(String(600))
     curtime = Column(String(50))
     # curtime =  Column(DateTime(timezone=True), server_default=func.now())
 
@@ -30,7 +30,7 @@ class UserExposure(Base):
         engine = PostgresqlServer().get_user_exposure_engine()
         Base.metadata.create_all(engine)
 
-    def new(self,userid,newid,curtime):
+    def new(self,userid,vehicle_id,curtime):
         self.userid = userid  
-        self.newid =  newid  
+        self.vehicle_id =  vehicle_id  
         self.curtime = curtime

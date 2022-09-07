@@ -24,8 +24,8 @@ class UserLikes(Base):
         engine = PostgresqlServer().get_user_like_engine()
         Base.metadata.create_all(engine)
 
-    def new(self,userid,username,newid):
+    def new(self,userid,username,vehicle_id):
         self.userid = userid  
         self.username = username  
-        self.newid =  newid  
+        self.vehicle_id =  vehicle_id  
         # self.curtime = curtime
