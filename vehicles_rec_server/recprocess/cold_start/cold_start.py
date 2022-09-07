@@ -1,11 +1,12 @@
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 
 from sqlalchemy.sql.functions import user
-sys.path.append('../../')
-from conf.dao_config import cate_dict
+from conf.dao_config import make_dict
 from dao.mongo_server import MongoServer
 from dao.redis_server import RedisServer
-from dao.mysql_server import MysqlServer
+from dao.postgresql_server import PostgresqlServer
 from dao.entity.register_user import RegisterUser
 from collections import defaultdict
 

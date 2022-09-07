@@ -1,6 +1,6 @@
-import os 
-import sys 
-sys.path.append("../../")
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 from conf.proj_path import log_data_path, user_info_path, doc_info_path
 import pandas as pd
 

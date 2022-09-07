@@ -1,9 +1,10 @@
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 import datetime
 from collections import Counter, defaultdict
 
 from sqlalchemy.sql.expression import table
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 from dao.mongo_server import MongoServer
 from dao.postgresql_server import PostgresqlServer
 from dao.entity.register_user import RegisterUser

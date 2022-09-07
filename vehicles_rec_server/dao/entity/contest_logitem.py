@@ -1,5 +1,6 @@
 import sys
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 import time
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base

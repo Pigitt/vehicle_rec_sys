@@ -1,8 +1,9 @@
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.sqltypes import BigInteger
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 from conf.dao_config import register_user_table_name
 from dao.postgresql_server import PostgresqlServer
 

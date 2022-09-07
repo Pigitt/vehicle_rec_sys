@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
 import sys
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 import jieba
 import jieba.analyse
 from conf.proj_path import stop_words_path

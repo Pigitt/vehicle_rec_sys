@@ -1,5 +1,6 @@
 import sys
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 from dao.postgresql_server import PostgresqlServer
 from dao.entity.logitem import LogItem
 

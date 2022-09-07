@@ -3,9 +3,9 @@
 这里将某个中文新闻推荐竞赛的数据集添加到数据库中用于后续的环节，这个脚本主
 要就是将竞赛数据集导入数据库
 """
-import os 
 import sys
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 import numpy as np
 import pandas as pd
 from tqdm import tqdm

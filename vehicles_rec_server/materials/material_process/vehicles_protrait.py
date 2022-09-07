@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from re import S
-import sys
 import json
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 # from material_process.utils import get_key_words
 from dao.mongo_server import MongoServer
 from dao.redis_server import RedisServer

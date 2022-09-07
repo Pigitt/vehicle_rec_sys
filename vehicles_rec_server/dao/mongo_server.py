@@ -1,6 +1,7 @@
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 import datetime
-sys.path.append("/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/")
 import pymongo
 from conf.dao_config import mongo_hostname, mongo_port
 from conf.dao_config import vehicle_db_name, vehicle_collection_name_prefix

@@ -1,5 +1,6 @@
 import sys
-sys.path.append('../../')
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
 from conf.dao_config import cate_dict
 from dao.mongo_server import MongoServer
 from dao.redis_server import RedisServer
