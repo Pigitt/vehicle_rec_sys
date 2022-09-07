@@ -2,7 +2,7 @@
 import re
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 import jieba
 import jieba.analyse
 from conf.proj_path import stop_words_path

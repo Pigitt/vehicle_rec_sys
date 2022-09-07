@@ -3,7 +3,7 @@ from re import S
 import json
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 # from material_process.utils import get_key_words
 from dao.mongo_server import MongoServer
 from dao.redis_server import RedisServer

@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__')))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 import redis 
 from conf.dao_config import redis_hostname, redis_port, static_vehicles_info_db_num, dynamic_vehicles_info_db_num, reclist_redis_db_num
 from conf.dao_config import user_exposure_db_num
