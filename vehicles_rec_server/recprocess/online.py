@@ -4,7 +4,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 import json
 import time
 import threading
-from conf.dao_config import make_id
+from conf.dao_config import make_dict
 from conf.proj_path import bad_case_vehicle_log_path
 from dao.redis_server import RedisServer
 from dao.postgresql_server import PostgresqlServer
@@ -25,10 +25,10 @@ class OnlineServer(object):
         self.dynamic_vehicles_info_redis_db = redis_server.get_dynamic_vehicles_info_redis()
         self.exposure_redis_db = redis_server.get_exposure_redis()
         self.register_sql_sess = PostgresqlServer().get_register_user_session()
-        self.make_dict = make_id
+        self.make_dict = make_dict
         self.make_id_list = list(self.make_dict.keys())
         self.bad_case_vehicle_log_path = bad_case_vehicle_log_path
-        self.name2id_make_dict = {v: k for k, v in self.make_dict.items()}
+        self.name2id_make_dict = {v.lower(): k for k, v in self.make_dict.items()}
         self._set_user_group() 
 
     def __new__(cls, *args, **kwargs):
@@ -42,7 +42,7 @@ class OnlineServer(object):
         """通过查sql表得到用户的redis key进而确定当前新用户使用哪一个新的模板
         """
         user_info = self.register_sql_sess.query(RegisterUser).filter(RegisterUser.userid == userid).first()
-        print(user_info)
+        # print(user_info)
         if int(user_info.age) < 23 and user_info.gender == "female":
             redis_key = "cold_start_group:{}".format(str(1))
         elif int(user_info.age) >= 23 and user_info.gender == "female":

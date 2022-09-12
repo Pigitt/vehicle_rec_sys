@@ -37,4 +37,4 @@ class LogItem(Base):
     def new(self,userid,vehicle_id,actiontype):
         self.userid = userid  
         self.vehicle_id = vehicle_id  
-        self.actiontype =  actiontype  
+        self.actiontype =  actiontype

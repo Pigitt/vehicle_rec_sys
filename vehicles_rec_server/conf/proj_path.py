@@ -1,7 +1,7 @@
 import os
 
 # home_path = os.environ['HOME']
-proj_path = "D:/git/Pigitt/vehicle_rec_sys/vehicles_rec_server/"
+proj_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath('__file__'))))
 stop_words_path = proj_path + "conf/stop_words.txt"
 bad_case_vehicle_log_path = proj_path + "logs/vehicle_bad_cases.log"
 

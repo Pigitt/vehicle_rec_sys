@@ -156,7 +156,7 @@ def vehicle_detail():
     
     user_id = UserAction().get_user_id_by_name(user_name)  
 
-    # if news_id is None or user_id is None:
+    # if vehicle_id is None or user_id is None:
     if vehicle_id is None or user_name is None:
         return jsonify({"code": 2000, "msg": "vehicle_id is none or user_name is none!"}) 
     try:
@@ -174,7 +174,7 @@ def vehicle_detail():
         else:
             vehicle_detail["collections"] = False
 
-        return jsonify({"code": 0, "msg": "request news_detail success.", "data": vehicle_detail})
+        return jsonify({"code": 0, "msg": "request vehicles_detail success.", "data": vehicle_detail})
     except Exception as e:
         print(str(e))
         return jsonify({"code": 2000, "msg": "error"}) 

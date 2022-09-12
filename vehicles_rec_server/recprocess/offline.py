@@ -1,4 +1,3 @@
-
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -22,7 +21,7 @@ class OfflineServer(object):
         """
         self.hot_recall.update_hot_value()
         # 将新闻的热度模板添加到redis中
-        self.hot_recall.group_cate_for_news_list_to_redis()
+        self.hot_recall.group_cate_for_vehicles_list_to_redis()
         print("a hot rec list are saved into redis.....")
         
     def rec_list_to_redis(self):
