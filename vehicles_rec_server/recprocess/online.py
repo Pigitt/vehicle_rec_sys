@@ -63,10 +63,10 @@ class OnlineServer(object):
         4. age >= 23 && gender == male  
         """
         self.user_group = {
-            "1": ["国内","娱乐","体育","科技"],
-            "2": ["国内","社会","美股","财经","股市"],
-            "3": ["国内","股市","体育","科技"],
-            "4": ["国际", "国内","军事","社会","美股","财经","股市"]
+            "1": ["bugatti","audi","ferrari","bentley","tesla","bmw"],
+            "2": ["jeep","kia","hyundai","honda","toyota"],
+            "3": ["lamborghini","land-rover","ferrari","aston-martin","cadillac"],
+            "4": ["dodge","fiat","gmc","honda","hyundai","suzuki","volkswagen","toyota"]
         }
         self.group_to_make_id_dict = defaultdict(list)
         for k, make_list in self.user_group.items():

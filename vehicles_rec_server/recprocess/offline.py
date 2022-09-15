@@ -21,7 +21,7 @@ class OfflineServer(object):
         """
         self.hot_recall.update_hot_value()
         # 将新闻的热度模板添加到redis中
-        self.hot_recall.group_cate_for_vehicles_list_to_redis()
+        self.hot_recall.group_make_for_vehicle_list_to_redis()
         print("a hot rec list are saved into redis.....")
         
     def rec_list_to_redis(self):
@@ -35,7 +35,7 @@ class OfflineServer(object):
         # 生成冷启动模板
         self.cold_start.generate_cold_user_strategy_templete_to_redis_v2()
         # 初始化已有用户的冷启动列表
-        self.cold_start.user_news_info_to_redis()
+        self.cold_start.user_vehicle_info_to_redis()
 
 
 if __name__ == "__main__":
