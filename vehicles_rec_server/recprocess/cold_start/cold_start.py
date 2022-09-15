@@ -43,8 +43,8 @@ class ColdStart(object):
         }
         self.group_to_make_id_dict = defaultdict(list)
         for k, make_list in self.user_group.items():
-            for cate in make_list:
-                self.group_to_make_id_dict[k].append(self.name2id_make_dict[cate])
+            for make in make_list:
+                self.group_to_make_id_dict[k].append(self.name2id_make_dict[make])
 
     def _copy_cold_start_list_to_redis(self, user_id, group_id):
         """将确定分组后的用户的物料添加到redis中，并记录当前用户的所有新闻类别id
@@ -55,8 +55,8 @@ class ColdStart(object):
             user_redis_key = "cold_start_user:{}:{}".format(user_id, make_id)
             self.reclist_redis.zunionstore(user_redis_key, [group_redis_key])
         # 将用户的类别集合添加到redis中
-        cate_id_set_redis_key = "cold_start_user_cate_set:{}".format(user_id)
-        self.reclist_redis.sadd(cate_id_set_redis_key, *self.group_to_make_id_dict[group_id])
+        make_id_set_redis_key = "cold_start_user_make_set:{}".format(user_id)
+        self.reclist_redis.sadd(make_id_set_redis_key, *self.group_to_make_id_dict[group_id])
 
     def user_vehicle_info_to_redis(self):
         """将每个用户涉及到的不同的新闻列表添加到redis中去
@@ -102,5 +102,5 @@ if __name__ == "__main__":
     # ColdStart().generate_cold_start_news_list_to_redis_for_register_user()
     cold_start = ColdStart()
     cold_start.generate_cold_user_strategy_templete_to_redis_v2()
-    cold_start.user_news_info_to_redis()
+    cold_start.user_vehicle_info_to_redis()
 

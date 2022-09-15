@@ -45,3 +45,8 @@ vehicles_data/Tesla.json
 vehicles_data/Toyota.json
 vehicles_data/Volkswagen.json
 vehicles_data/Volvo.json
+off_data/user_info.txt
+off_data/train_data.txt
+off_data/test_data.txt
+off_data/readme.txt
+off_data/doc_info.txt
