@@ -173,7 +173,7 @@ class OnlineServer(object):
             return False
         return True
 
-    def _get_polling_rec_list(self, user_id, vehicle_expose_set, make_id_list, rec_type, one_page_vehicles_cnt=3):
+    def _get_polling_rec_list(self, user_id, vehicle_expose_set, make_id_list, rec_type, one_page_vehicles_cnt=5):
         """获取轮询的打散新闻列表
         """
         # 候选曝光列表
@@ -181,7 +181,7 @@ class OnlineServer(object):
         # 用户展示新闻列表
         user_vehicles_list = []
         iter_cnt = 0
-        # 给每个用户轮询每个类别的新闻，获取打散之后的新闻列表
+        # 给每个用户轮询每个品牌的车，获取打散之后的汽车列表
         while len(user_vehicles_list) != one_page_vehicles_cnt:
             make_id_index = iter_cnt % len(make_id_list)
             make_id = make_id_list[make_id_index]
